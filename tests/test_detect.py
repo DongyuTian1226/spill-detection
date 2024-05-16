@@ -92,7 +92,6 @@ def testStop():
             if type != 'stop':
                 assert not events[type]['occured']
             elif events[type]['occured']:
-                print(events[type])
                 assert events[type] == dataStopEvent
 
 
@@ -125,7 +124,6 @@ def testHighSpeed():
             if type != 'highSpeed':
                 assert not events[type]['occured']
             elif events[type]['occured']:
-                print(events[type])
                 assert events[type] == dataHighSpeedEvent
 
 
