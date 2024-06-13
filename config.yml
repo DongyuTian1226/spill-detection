@@ -46,7 +46,7 @@ eventTypes: ["spill", "stop", "incident", "crowd", "illegalOccupation"]
 # eventTypes: ["stop"]
 tTolerance: 300
 qStandard: 10000
-vLateral: 3
+vLateral: 5
 rate2: 0.0005
 WarnFreq: 300
 vStop: 2.22
