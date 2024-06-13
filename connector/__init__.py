@@ -1,4 +1,5 @@
 import os
+import json
 import requests
 import logging
 from datetime import datetime
@@ -77,7 +78,9 @@ class HttpPoster():
         将字典格式的数据以POST形式上传给http
         '''
         # r = requests.post(self.url, data=data)
-        r = requests.post(self.url, json=data)
+        # r = requests.post(self.url, json=data)
+        headers = {'Content-Type': 'application/json'}
+        r = requests.post(self.url, headers=headers, data=json.dumps(data))
         self.logger.debug(f"Post data: {data}")
         if r.status_code // 100 != 2:
             print(f"Failed to upload data, status code: {r.status_code}")
