@@ -184,3 +184,11 @@ class TrafficMng():
         for car in cars:
             carsByLane[car['laneID']].append(car)
         return carsByLane
+
+    def resetAllCellsDanger(self):
+        '''function resetAllCellsDanger
+
+        重置所有cell的danger属性为0
+        '''
+        for id in self.lanes:
+            self.lanes[id].resetAllCellsDanger()

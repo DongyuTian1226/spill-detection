@@ -259,3 +259,11 @@ class LaneMng:
         order = self.vdir * (car['y'] - self.start) // self.cellLen
         order = 0 if order < 0 else order    # 防止雷达监测范围扩大
         return order
+
+    def resetAllCellsDanger(self):
+        '''function resetAllCellsDanger
+
+        重置所有cell的danger
+        '''
+        for order in self.cells:
+            self.cells[order].resetDanger()

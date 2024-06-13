@@ -130,15 +130,10 @@ class EventDetector(TrafficMng):
         self.update(cars)
         # 检测交通事件
         self.updatePotentialDict(cars)
-        
         self.detect(cars)
-        # print(self.stopDict, unixMilliseconds2Datetime(cars[0]['timestamp']))
         # 更新事件过滤器的记录
         if len(cars) > 0:
             self.eventMng.ef.clearEventCache(cars[0]['timestamp'])
-        # if 1509417 in [car['id'] for car in cars]:
-        #     print(self.stopDict, 'timestamp')
-        #     print('------------', unixMilliseconds2Datetime(cars[0]['timestamp']), '------------')
         return self.eventMng.events
 
     def updatePotentialDict(self, cars: list) -> None:
@@ -160,32 +155,19 @@ class EventDetector(TrafficMng):
                     continue
                 # 事件发生
                 if car['id'] not in getattr(self, f'{type}Dict').keys():
-                    # if car['id'] == 1509417:
-                    #     print('***** not in', 'stopDict', self.stopDict)
                     # 未有该车记录, 该事件首次出现
                     getattr(self, f'{type}Dict')[car['id']] = \
                         [car['timestamp'], car['timestamp'], car, '']
-                    # if car['id'] == 9934:
-                    #     print('***** not in after', 'emgcBrakeDict',
-                    #           self.emgcBrakeDict)
                 else:
-                    # if car['id'] == 1509417:
-                    #     print('in before', 'stopDict', self.stopDict)
                     # 已有该车记录, 该事件已出现过, 更新该事件的当前时间和车辆信息
                     getattr(self, f'{type}Dict')[car['id']][1] = \
                         car['timestamp']
                     getattr(self, f'{type}Dict')[car['id']][2] = \
                         car
-                    # if car['id'] == 9934:
-                    #     print('in after', 'emgcBrakeDict', self.emgcBrakeDict)
-        # print('after update', cars[0]['timestamp'], ' ', self.stopDict)
         # 2. 遍历潜在事件记录字典
         # 删除无效dict键, 包括当前帧丢失目标, 或未消失但已脱离事件检测条件的目标
         for type in self.potentialEventTypes:
             self._deleteNoUsePotentialDictKeys(type, cars)
-        # print('after delete', cars[0]['timestamp'], ' ', self.stopDict)
-        # if cars[0]['deviceID'] == 'K81+320':
-        #     print('after deletion', 'stopDict', self.stopDict)
 
     def detect(self, cars: list):
         '''function detect
@@ -297,6 +279,8 @@ class EventDetector(TrafficMng):
                         f"开始时间: {startTime}, " + \
                         f"当前时间: {endTime}"
                     self.logger.warning(logEvent)
+                    # if spill occurs, reset danger of all cells
+                    self.resetAllCellsDanger()
         self.resetCellDetermineStatus()
 
     def _singleCarEventDetect(self, cars: list, eventType: str):

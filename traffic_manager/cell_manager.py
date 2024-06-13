@@ -209,3 +209,12 @@ class CellMng:
         重置cell的determine状态
         '''
         self.r2added = False
+
+    def resetDanger(self):
+        '''function resetDanger
+
+        重置cell的danger为0
+        '''
+        self.dangerTime = 0.0
+        self.dangerChange = 0.0
+        self.danger = 0.0
