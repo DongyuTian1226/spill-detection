@@ -69,7 +69,7 @@ def main():
         # auto_commit_interval_ms=cfg['kafkaAutoCommitIntervalMs']
         )
     # 生成http上报器
-    hp = HttpPoster(cfg['http'])
+    hp = HttpPoster(cfg['http'], deviceID=args.deviceId, deviceType=args.deviceType)
     logger.info('kafka与http数据通信组件已生成.')
 
     # 获取当前设备信息
