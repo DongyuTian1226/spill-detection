@@ -66,13 +66,15 @@ def observeFieldData(dataPath: str, ifSave: bool = False):
     for deviceID in infoDict:
         for deviceType in infoDict[deviceID]:
             targetsNumList = infoDict[deviceID][deviceType]['targetsNumList']
-            infoDict[deviceID][deviceType]['maxTargetsNum'] = max(targetsNumList)
-            infoDict[deviceID][deviceType]['minTargetsNum'] = min(targetsNumList)
+            infoDict[deviceID][deviceType]['maxTargetsNum'] = max(
+                targetsNumList)
+            infoDict[deviceID][deviceType]['minTargetsNum'] = min(
+                targetsNumList)
             infoDict[deviceID][deviceType]['meanTargetsNum'] = sum(
                 targetsNumList) / len(targetsNumList)
             targetsNumList.sort()
-            infoDict[deviceID][deviceType]['medianTargetsNum'] = targetsNumList[
-                len(targetsNumList) // 2]
+            infoDict[deviceID][deviceType][
+                'medianTargetsNum'] = targetsNumList[len(targetsNumList) // 2]
     # 打印信息
     for deviceID in infoDict:
         for deviceType in infoDict[deviceID]:
@@ -81,9 +83,12 @@ def observeFieldData(dataPath: str, ifSave: bool = False):
                 if info == 'targetsNumList':
                     continue
                 if info in ['startTimeStamp', 'endTimeStamp']:
-                    print(f'    {info}: {unixMilliseconds2Datetime(infoDict[deviceID][deviceType][info])}')
+                    printedTime = unixMilliseconds2Datetime(
+                        infoDict[deviceID][deviceType][info])
+                    print(f'    {info}: {printedTime}')
                 else:
-                    print(f'    {info}: {infoDict[deviceID][deviceType][info]}')
+                    print(f'    {info}: ' +
+                          f'{infoDict[deviceID][deviceType][info]}')
     # 保存信息
     if ifSave:
         import pandas as pd
@@ -94,16 +99,17 @@ def observeFieldData(dataPath: str, ifSave: bool = False):
         for deviceID in infoDict:
             for deviceType in infoDict[deviceID]:
                 info = infoDict[deviceID][deviceType]
-                infoList.append([deviceID, deviceType,
-                                 unixMilliseconds2Datetime(info['startTimeStamp']),
-                                 unixMilliseconds2Datetime(info['endTimeStamp']),
-                                 info['messageNum'],
-                                 info['maxTargetsNum'], info['minTargetsNum'],
-                                 info['meanTargetsNum'], info['medianTargetsNum']])
-        df = pd.DataFrame(infoList, columns=['deviceID', 'deviceType',
-                                             'startTime', 'endTime', 'messageNum',
-                                             'maxTargetsNum', 'minTargetsNum',
-                                             'meanTargetsNum', 'medianTargetsNum'])
+                infoList.append([
+                    deviceID, deviceType,
+                    unixMilliseconds2Datetime(info['startTimeStamp']),
+                    unixMilliseconds2Datetime(info['endTimeStamp']),
+                    info['messageNum'],
+                    info['maxTargetsNum'], info['minTargetsNum'],
+                    info['meanTargetsNum'], info['medianTargetsNum']])
+        df = pd.DataFrame(infoList, columns=[
+            'deviceID', 'deviceType', 'startTime', 'endTime', 'messageNum',
+            'maxTargetsNum', 'minTargetsNum',
+            'meanTargetsNum', 'medianTargetsNum'])
         df.to_csv(savePath, index=False)
         print(f'数据信息保存在{savePath}')
 
@@ -139,4 +145,4 @@ def getAverageTimeStepForSingleDevice(dataPath: str):
     for i in range(1, len(timeList)):
         timeStepList.append(timeList[i] - timeList[i - 1])
     print(deviceID, deviceType,
-        'average time step:', sum(timeStepList) / len(timeStepList))
+          'average time step:', sum(timeStepList) / len(timeStepList))

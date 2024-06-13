@@ -5,7 +5,7 @@ from .pro_class.smooth import Smoother
 
 ACCELERATION_CALCULATE_FRAMES = 5         # 计算加速度帧数
 NO_UPDATE_DATA_MAX_CACHE_MS = 10000     # ms, 无更新数据最大缓存时间
-TRAJECTORY_MAX_CACHE_MS= 30000           # ms, 轨迹最大缓存时间
+TRAJECTORY_MAX_CACHE_MS = 30000           # ms, 轨迹最大缓存时间
 
 
 class PreProcessor:
@@ -35,7 +35,7 @@ class PreProcessor:
     '''
     def __init__(self, cfg: dict, clb: dict):
         '''function __init__
-        
+
         input
         -----
         cfg: dict, 配置文件

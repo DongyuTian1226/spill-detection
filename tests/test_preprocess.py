@@ -4,6 +4,7 @@ from pre_processing import PreProcessor
 import yaml
 from pre_processing.utils import carsList2Dict
 
+
 def test_preprocess():
     # 1. 离线数据测试
     # 读取配置文件

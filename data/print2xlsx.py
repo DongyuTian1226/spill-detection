@@ -20,7 +20,8 @@ def preproInfo2Xlsx(infoPath: str):
     处理插值耗时：2474.13ms, 平均每次耗时：0.11ms, 占比：1.63%
     查找最近帧号耗时：497.27ms, 平均每次耗时：0.02ms, 占比：0.33%
     补全轨迹点耗时：0.00ms, 平均每次耗时：0.00ms, 占比：0.00%
-    Interpolation report:: 2024-03-30 17:00:44.983972  dataTime:  2024-03-27 17:10:02 K81+320_1
+    Interpolation report:: 2024-03-30 17:00:44.983972
+    dataTime:  2024-03-27 17:10:02 K81+320_1
 
     xlsx文件格式
     ------------
@@ -82,7 +83,7 @@ def preproInfo2Xlsx(infoPath: str):
                 infoDict[deviceID]['completeTracksRatio'].append(ratio)
     # 将dict中按设备号，将各个键所对应的list，按索引分行，保存到xlsx文件
     for deviceRunTime in infoDict:
-       # 写入xlsx文件
+        # 写入xlsx文件
         df = pd.DataFrame(infoDict[deviceRunTime])
         # 设定列的顺序，时间在前，占比在后
         columns = ['count', 'framesCombineTime',
@@ -91,7 +92,7 @@ def preproInfo2Xlsx(infoPath: str):
                    'delayFramesRatio', 'interpolationRatio',
                    'nearFramesRatio', 'completeTracksRatio']
         df = df[columns]
-        df.to_excel(xlsxPath, sheet_name=deviceRunTime, index=None)    
+        df.to_excel(xlsxPath, sheet_name=deviceRunTime, index=None)
 
 
 def contorllerInfo2Xlsx(infoPath: str):
@@ -109,7 +110,8 @@ def contorllerInfo2Xlsx(infoPath: str):
 
     info信息格式
     ------------
-    time report: K81+320_1 2024-03-30 18:11:37.348286  dataTime:  2024-03-27 17:02:29 K81+320_1
+    time report: K81+320_1 2024-03-30 18:11:37.348286
+    dataTime:  2024-03-27 17:02:29 K81+320_1
     count:  6000
     驱动器平均耗时: 0.01ms, 占比: 0.50%
     交通参数计算平均耗时: 0.00ms, 占比: 0.18%
@@ -189,25 +191,26 @@ def contorllerInfo2Xlsx(infoPath: str):
 
     # 将dict中按设备号，将各个键所对应的list，按索引分行，保存到xlsx文件
     for deviceRunTime in infoDict:
-       # 写入xlsx文件
+        # 写入xlsx文件
         df = pd.DataFrame(infoDict[deviceRunTime])
         # 设定列的顺序，时间在前，占比在后
-        columns = ['count', 'aveTotalTime', 'driverTime',
-                   'trafficTime', 'preproTime', 'detectTime', 'sendTime',
-                   'saveTime', 'driverRatio', 'trafficRatio', 'preproRatio',
-                     'detectRatio', 'sendRatio', 'saveRatio']
+        # columns = ['count', 'aveTotalTime', 'driverTime',
+        #            'trafficTime', 'preproTime', 'detectTime', 'sendTime',
+        #            'saveTime', 'driverRatio', 'trafficRatio', 'preproRatio',
+        #              'detectRatio', 'sendRatio', 'saveRatio']
         df.to_excel(xlsxPath, sheet_name=deviceRunTime, index=None)
 
 
 if __name__ == "__main__":
     # 已ok, 请勿再次运行
-    # path = r'D:\myscripts\spill-detection\data\extractedData\2024-3-27-17_byDevice\K81+320-prepro-runtime-report.txt'
+    dir = r'data\extractedData\2024-3-27-17_byDevice'
+    # path = dir + r'\K81+320-prepro-runtime-report.txt'
     # preproInfo2Xlsx(path)
-    # path = r'D:\myscripts\spill-detection\data\extractedData\2024-3-27-17_byDevice\K81+320-contorller-runtime-report.txt'
+    # path = dir + r'\K81+320-contorller-runtime-report.txt'
     # contorllerInfo2Xlsx(path)
-    # path = r'D:\myscripts\spill-detection\data\extractedData\2024-3-27-17_byDevice\K78+760-prepro-runtime-report.txt'
+    # path = dir + r'\K78+760-prepro-runtime-report.txt'
     # preproInfo2Xlsx(path)
     # 即将执行
-    path = r'D:\myscripts\spill-detection\data\extractedData\2024-3-27-17_byDevice\K78+760-prepro-runtime-report.txt'
+    path = dir + r'\K78+760-prepro-runtime-report.txt'
     preproInfo2Xlsx(path)
     print('done.')

@@ -18,7 +18,8 @@ class HttpPoster():
     poster.run(data)
     将data上报到url
     '''
-    def __init__(self, url, deviceID: str = None, deviceType: int = 0, level=logging.DEBUG):
+    def __init__(self, url, deviceID: str = None, deviceType: int = 0,
+                 level=logging.DEBUG):
         '''function __init__
 
         input
@@ -29,7 +30,8 @@ class HttpPoster():
         if deviceID is not None:
             self._initHttpLogger(deviceID, deviceType, level)
 
-    def _initHttpLogger(self, deviceID: str, deviceType: int = 200, level=logging.DEBUG):
+    def _initHttpLogger(self, deviceID: str, deviceType: int = 200,
+                        level=logging.DEBUG):
         self.logger = logging.getLogger(deviceID + '_' + str(deviceType))
         self.logger.setLevel(level)
         fmtStrList = ['asctime', 'name', 'levelname', 'filename', 'message']
@@ -47,7 +49,7 @@ class HttpPoster():
         deviceDir = f'{logsDir}/{self.logger.name}'
         if not os.path.exists(deviceDir):
             os.mkdir(deviceDir)
-        filePath = f'./logger/logs/{deviceID + '_' + str(deviceType)}/' + \
+        filePath = f'./logger/logs/{deviceID}_{str(deviceType)}/' + \
             f'http-{datetime.now().strftime("%Y-%m-%d")}.log'
         fh = logging.FileHandler(filePath, encoding='utf-8')
         fh.setFormatter(formatter)
@@ -88,5 +90,5 @@ class HttpPoster():
             try:
                 print(r.json())  # Try to parse the response body as JSON
             except ValueError:
-                print(r.text)  # If the response body is not JSON, print it as is
+                print(r.text)  # If the response body is not JSON, print
         return r

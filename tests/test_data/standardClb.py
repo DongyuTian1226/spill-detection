@@ -66,6 +66,6 @@ standardClb = {
             'start': 0, 'len': 799.3, 'end': 799.3,
             'coef': [-0.862, -5.295, 805.134],
             'cells': [False, False, False, False, False, False, False, False,
-                        False, False, False, False, False, False, False, False]
+                      False, False, False, False, False, False, False, False]
         }
     }

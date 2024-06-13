@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
 
+
 def localTest():
     # run an local http
     app = Flask(__name__)
+
     @app.route('/',  methods=['GET', 'POST'])
     def index():
         print(request.method, request.is_json)
@@ -22,7 +24,8 @@ def localTest():
         if request.is_json:  # 检查请求是否是JSON格式
             data = request.get_json()
             # 进行处理或响应
-            r = jsonify({"message": "Data received successfully", "data": data})
+            r = jsonify({"message": "Data received successfully",
+                         "data": data})
             print(r)
             return r
         else:

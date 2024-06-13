@@ -15,9 +15,10 @@ plt.rcParams['savefig.dpi'] = 300
 
 
 def drawTimespace(data: pd.DataFrame, saveDir: str, suffix: str = '',
-                  maxFrameNum = 1e20, v_trans = False, laneIndex: int = 2,
+                  maxFrameNum: int = 1e20, v_trans: bool = False,
+                  laneIndex: int = 2,
                   carIDIndex: int = 1, frameIndex: int = 0,
-                  locationIndex: int = 4, vIndex = 10):
+                  locationIndex: int = 4, vIndex: float = 10):
     '''function drawTimespace
 
     input
@@ -40,23 +41,26 @@ def drawTimespace(data: pd.DataFrame, saveDir: str, suffix: str = '',
     deviceID = data['deviceID'].iloc[0]
     carID = data['id'].iloc[0]
     colLane, colCarID, colFrame, colLocation, colV = list(
-        map(lambda x: data.columns[x], 
+        map(lambda x: data.columns[x],
             [laneIndex, carIDIndex, frameIndex, locationIndex, vIndex]))
-    data = data.sort_values(by=[colLane, colCarID, colFrame],
-                          axis=0, ascending=[True, True, True])
+    data = data.sort_values(
+        by=[colLane, colCarID, colFrame],
+        axis=0, ascending=[True, True, True])
     data = data[data[colFrame] < maxFrameNum]   # 只观察前maxFrameNum帧
     data[colV] = data[colV] * 3.6 if v_trans else data[colV]   # 速度单位转换为km/h
     data = data.reset_index(drop=True)
     for lane, laneGroup in data.groupby(data[colLane]):
         plt.figure(figsize=(20, 6))
         for _, carTraj in laneGroup.groupby(laneGroup[colCarID]):
-            carTraj[colV] = carTraj[colV].abs() # 速度取绝对值，以免速度方向与指定方向相反而带有负号
+            # 速度取绝对值，以免速度方向与指定方向相反而带有负号
+            carTraj[colV] = carTraj[colV].abs()
             plt.scatter(carTraj[colFrame], carTraj[colLocation],
                         c=list(carTraj[colV]), cmap=cm.rainbow_r, s=1)
         plt.title("lane %d" % lane)
         plt.colorbar()
         plt.savefig(saveDir +
-                    f"/{deviceID}_id-{carID}_{suffix}_lane-{lane}.jpg", dpi=300)
+                    f"/{deviceID}_id-{carID}_{suffix}_lane-{lane}.jpg",
+                    dpi=300)
         plt.close()
 
 
@@ -134,10 +138,11 @@ def drawExcelEventCarIDTrajectory(
         drawTimespace(eventData, imgDirPath, suffix=type + '_' + timeStr)
 
 
-def drawTimespaceIdColor(data: pd.DataFrame, saveDir: str, suffix: str,
-                  maxFrameNum = 1e20, v_trans = False, laneIndex: int = 2,
-                  carIDIndex: int = 1, frameIndex: int = 0,
-                  locationIndex: int = 4, vIndex = 10):
+def drawTimespaceIdColor(
+        data: pd.DataFrame, saveDir: str, suffix: str,
+        maxFrameNum: int = 1e20, v_trans: bool = False,
+        laneIndex: int = 2, carIDIndex: int = 1,
+        frameIndex: int = 0, locationIndex: int = 4, vIndex: int = 10):
     '''function drawTimespace
 
     input
@@ -164,29 +169,32 @@ def drawTimespaceIdColor(data: pd.DataFrame, saveDir: str, suffix: str,
     deviceID = data['deviceID'].iloc[0]
     carID = data['id'].iloc[0]
     colLane, colCarID, colFrame, colLocation, colV = list(
-        map(lambda x: data.columns[x], 
+        map(lambda x: data.columns[x],
             [laneIndex, carIDIndex, frameIndex, locationIndex, vIndex]))
-    data = data.sort_values(by=[colLane, colCarID, colFrame],
-                          axis=0, ascending=[True, True, True])
+    data = data.sort_values(
+        by=[colLane, colCarID, colFrame],
+        axis=0, ascending=[True, True, True])
     data = data[data[colFrame] < maxFrameNum]   # 只观察前maxFrameNum帧
-    data[colV] = data[colV] * 3.6 if v_trans else data[colV]   # 速度单位转换为km/h
+    data[colV] = data[colV] * 3.6 if v_trans else data[colV]   # 速度转为km/h
     data = data.reset_index(drop=True)
     for lane, laneGroup in data.groupby(data[colLane]):
         plt.figure(figsize=(20, 6))
         for _, carTraj in laneGroup.groupby(laneGroup[colCarID]):
-            carTraj[colV] = carTraj[colV].abs() # 速度取绝对值，以免速度方向与指定方向相反而带有负号
+            # 速度取绝对值，以免速度方向与指定方向相反而带有负号
+            carTraj[colV] = carTraj[colV].abs()
             plt.scatter(carTraj[colFrame], carTraj[colLocation],
                         c=[idColor[id] for id in carTraj[colCarID]], s=1)
         plt.title("lane %d" % lane)
         plt.colorbar()
         plt.savefig(saveDir +
-                    f"/{deviceID}_id-{carID}_{suffix}_lane-{lane}.jpg", dpi=300)
+                    f"/{deviceID}_id-{carID}_{suffix}_lane-{lane}.jpg",
+                    dpi=300)
         plt.close()
 
 
 if __name__ == "__main__":
     # # # 画出事件车辆的时空轨迹图
-    # eventSummaryPath = r'D:\myscripts\spill-detection\analysis\4月22，23日全天数据\logs.xlsx'
+    # eventSummaryPath = r'analysis\4月22，23日全天数据\logs.xlsx'
     # dataPathList = [
     #     # r'E:\data\2024-4-22-15.csv',
     #     r'E:\data\2024-4-22-16.csv',
@@ -202,8 +210,8 @@ if __name__ == "__main__":
     #                                 typeList=['stop', 'incident', 'spill'])
 
     # # 按id分配不同color画ts图
-    # dataPath = r'D:\myscripts\spill-detection\data\extractedData\2024-3-27-17_byDevice\K81+866_1.csv'
-    # saveDir = r'D:\myscripts\spill-detection\data\extractedData\2024-3-27-17_byDevice\K81+866_1_images'
+    # dataPath = r'data\extractedData\2024-3-27-17_byDevice\K81+866_1.csv'
+    # saveDir = r'data\extractedData\2024-3-27-17_byDevice\K81+866_1_images'
     # data = pd.read_csv(dataPath)
     # # # 全部时长
     # # drawTimespaceIdColor(data, saveDir, 'test')
@@ -216,10 +224,11 @@ if __name__ == "__main__":
 
     # # 画出指定数据的时空轨迹图
     # dataPathList = [
-    #     r'D:\myscripts\spill-detection\data\extractedData\K81+320_1_2024-04-23-08-10-00_2024-04-23-08-20-00.csv'
+    #     r'data\extractedData\K81+320_1_start_end.csv'
     # ]
     dataDir = r'D:\myscripts\spill-detection\data\extractedData'
-    dataPathList = [os.path.join(dataDir, x) for x in os.listdir(dataDir) if x.endswith('.csv')]
+    dataPathList = [os.path.join(dataDir, x) for x
+                    in os.listdir(dataDir) if x.endswith('.csv')]
     # TODO 过滤lane
     for dataPath in dataPathList:
         data = pd.read_csv(dataPath)

@@ -32,7 +32,7 @@ def _loggerPrint2Xlsx(dataPath: str):
     input
     -----
     dataPath: str, 日志文件路径
-    
+
     return
     ------
     pd.DataFrame, 保存日志信息到pd.DataFrame
@@ -41,17 +41,38 @@ def _loggerPrint2Xlsx(dataPath: str):
 
     data信息格式
     ------------
-    2024-04-01 14:06:46,697 - K78+760_1 - WARNING - __init__.py - 事件ID=20240401-A00001 - id=2车道可能有抛洒物, 元胞起点: 700, 元胞终点: 750, 危险度: 1.0004999999999453, 开始时间: 2024-03-26 08:40:37, 当前时间: 2024-03-26 08:40:37
-    2024-03-31 23:42:09,958 - K81+866_1 - WARNING - __init__.py - 事件ID=20240331-B00002 - id=1605316车辆发生stop, (x,y)=[1.0, 15.0]m, lane=8, (vx,vy,speed)=[0.0, 1.0, 0.0]km/h , 开始时间2024-03-27 17:10:00.
-    2024-03-31 23:42:10,924 - K81+866_1 - WARNING - __init__.py - 事件ID=20240331-H00001 - id=1605251车辆发生illegalOccupation, (x,y)=[1.0, 17.0]m, lane=8, (vx,vy,speed)=[3.0, 0.0, 0.0]km/h , 开始时间2024-03-27 17:10:00.
-    2024-03-31 23:42:11,497 - K81+866_1 - WARNING - __init__.py - 事件ID=20240331-H00001 - id=1605251车辆illegalOccupation事件结束, (x,y)=[1.0, 17.0]m, lane=8, (vx,vy,speed)=[3.0, 0.0, 0.0]km/h , 开始时间2024-03-27 17:10:00, 结束时间2024-03-27 17:10:00.
-    2024-03-31 23:42:39,650 - K81+866_1 - WARNING - __init__.py - 事件ID=20240331-B00002 - id=1605316车辆stop事件结束, (x,y)=[1.0, 15.0]m, lane=8, (vx,vy,speed)=[1.0, 0.0, 0.0]km/h , 开始时间2024-03-27 17:10:00, 结束时间2024-03-27 17:10:12.
-    2024-03-31 23:44:47,749 - K81+866_1 - WARNING - __init__.py - 事件ID=20240331-F00005 - id=1602112,1602263车辆碰撞, (x,y)=[1.0, 16.0]m, lane=8, (vx,vy,speed)=[2.0, 1.0, 0.0]km/h (x,y)=[1.0, 16.0]m, lane=8, (vx,vy,speed)=[1.0, 4.0, 0.0]km/h
-    2024-04-01 14:13:33,584 - K78+760_1 - WARNING - __init__.py - 事件ID=20240401-A31513 - id=2车道抛洒物已处理, 元胞起点: 700, 元胞终点: 750, 危险度: 1.2379999999999192, 开始时间: 2024-03-26 08:53:54, 结束时间: 2024-03-26 08:53:54
+    2024-04-01 14:06:46,697 - K78+760_1 - WARNING - __init__.py -
+    事件ID=20240401-A00001 - id=2车道可能有抛洒物, 元胞起点: 700, 元胞终点: 750,
+    危险度: 1.0004999999999453, 开始时间: 2024-03-26 08:40:37,
+    当前时间: 2024-03-26 08:40:37
+    2024-03-31 23:42:09,958 - K81+866_1 - WARNING - __init__.py -
+    事件ID=20240331-B00002 - id=1605316车辆发生stop, (x,y)=[1.0, 15.0]m,
+    lane=8, (vx,vy,speed)=[0.0, 1.0, 0.0]km/h , 开始时间2024-03-27 17:10:00.
+    2024-03-31 23:42:10,924 - K81+866_1 - WARNING - __init__.py -
+    事件ID=20240331-H00001 - id=1605251车辆发生illegalOccupation,
+    (x,y)=[1.0, 17.0]m, lane=8, (vx,vy,speed)=[3.0, 0.0, 0.0]km/h ,
+    开始时间2024-03-27 17:10:00.
+    2024-03-31 23:42:11,497 - K81+866_1 - WARNING - __init__.py -
+    事件ID=20240331-H00001 - id=1605251车辆illegalOccupation事件结束,
+    (x,y)=[1.0, 17.0]m, lane=8, (vx,vy,speed)=[3.0, 0.0, 0.0]km/h ,
+    开始时间2024-03-27 17:10:00, 结束时间2024-03-27 17:10:00.
+    2024-03-31 23:42:39,650 - K81+866_1 - WARNING - __init__.py -
+    事件ID=20240331-B00002 - id=1605316车辆stop事件结束, (x,y)=[1.0, 15.0]m,
+    lane=8, (vx,vy,speed)=[1.0, 0.0, 0.0]km/h , 开始时间2024-03-27 17:10:00,
+    结束时间2024-03-27 17:10:12.
+    2024-03-31 23:44:47,749 - K81+866_1 - WARNING - __init__.py -
+    事件ID=20240331-F00005 - id=1602112,1602263车辆碰撞, (x,y)=[1.0, 16.0]m,
+    lane=8, (vx,vy,speed)=[2.0, 1.0, 0.0]km/h (x,y)=[1.0, 16.0]m, lane=8,
+    (vx,vy,speed)=[1.0, 4.0, 0.0]km/h
+    2024-04-01 14:13:33,584 - K78+760_1 - WARNING - __init__.py -
+    事件ID=20240401-A31513 - id=2车道抛洒物已处理, 元胞起点: 700, 元胞终点: 750,
+    危险度: 1.2379999999999192, 开始时间: 2024-03-26 08:53:54,
+    结束时间: 2024-03-26 08:53:54
 
     xlsx文件格式
     ------------
-    deviceID, type, eventID, id, start_x, start_y, start_lane, start_vx, start_vy, start_speed,
+    deviceID, type, eventID, id, start_x, start_y,
+    start_lane, start_vx, start_vy, start_speed,
     end_x, end_y, end_lane, end_vx, end_vy, end_speed, startTime, endTime
 
     note
@@ -112,6 +133,7 @@ def eventInfo2Dict(eventInfo: str):
     else:
         return singleCarEventInfo2Dict(eventInfo)
 
+
 def spillInfo2Dict(eventInfo):
     spillInfoDict = deepcopy(infoDictBase)
     if '可能' in eventInfo:
@@ -121,9 +143,11 @@ def spillInfo2Dict(eventInfo):
         end = eventInfo.split('元胞终点: ')[-1].split(',')[0]
         spillInfoDict['end_x'] = float(end)
         spillInfoDict['end_y'] = float(end)
-        spillInfoDict['start_lane'] = int(eventInfo.split('id=')[-1].split('车道')[0])
+        spillInfoDict['start_lane'] = int(
+            eventInfo.split('id=')[-1].split('车道')[0])
         spillInfoDict['end_lane'] = spillInfoDict['start_lane']
-        spillInfoDict['startTime'] = eventInfo.split('开始时间: ')[-1].split(',')[0]
+        spillInfoDict['startTime'] = eventInfo.split(
+            '开始时间: ')[-1].split(',')[0]
     elif '已处理' in eventInfo:
         start = eventInfo.split('元胞起点: ')[-1].split(',')[0]
         spillInfoDict['start_x'] = float(start)
@@ -131,10 +155,13 @@ def spillInfo2Dict(eventInfo):
         end = eventInfo.split('元胞终点: ')[-1].split(',')[0]
         spillInfoDict['end_x'] = float(end)
         spillInfoDict['end_y'] = float(end)
-        spillInfoDict['start_lane'] = int(eventInfo.split('id=')[-1].split('车道')[0])
+        spillInfoDict['start_lane'] = int(
+            eventInfo.split('id=')[-1].split('车道')[0])
         spillInfoDict['end_lane'] = spillInfoDict['start_lane']
-        spillInfoDict['startTime'] = eventInfo.split('开始时间: ')[-1].split(',')[0]
-        spillInfoDict['endTime'] = eventInfo.split('结束时间: ')[-1].split(',')[0]
+        spillInfoDict['startTime'] = eventInfo.split(
+            '开始时间: ')[-1].split(',')[0]
+        spillInfoDict['endTime'] = eventInfo.split(
+            '结束时间: ')[-1].split(',')[0]
     else:
         raise ValueError('抛洒物事件信息错误.')
     # 删除值为None的键值对
@@ -143,18 +170,26 @@ def spillInfo2Dict(eventInfo):
             del spillInfoDict[key]
     return spillInfoDict
 
+
 def crowdInfo2Dict(eventInfo):
     # TODO 未完成
     crowdInfoDict = deepcopy(infoDictBase)
     if '解除' not in eventInfo:
-        crowdInfoDict['start_lane'] = int(eventInfo.split('车道=')[-1].split(',')[0])
-        crowdInfoDict['start_speed'] = float(eventInfo.split('speed=')[-1].split('km/h')[0])
-        crowdInfoDict['startTime'] = eventInfo.split('开始时间')[-1].split('.')[0]
+        crowdInfoDict['start_lane'] = int(
+            eventInfo.split('车道=')[-1].split(',')[0])
+        crowdInfoDict['start_speed'] = float(
+            eventInfo.split('speed=')[-1].split('km/h')[0])
+        crowdInfoDict['startTime'] = eventInfo.split(
+            '开始时间')[-1].split('.')[0]
     elif '拥堵' in eventInfo:
-        crowdInfoDict['end_lane'] = int(eventInfo.split('车道=')[-1].split(',')[0])
-        crowdInfoDict['end_speed'] = float(eventInfo.split('speed=')[-1].split('km/h')[0])
-        crowdInfoDict['startTime'] = eventInfo.split('开始时间')[-1].split('.')[0]
-        crowdInfoDict['endTime'] = eventInfo.split('结束时间')[-1].split('.')[0]
+        crowdInfoDict['end_lane'] = int(
+            eventInfo.split('车道=')[-1].split(',')[0])
+        crowdInfoDict['end_speed'] = float(
+            eventInfo.split('speed=')[-1].split('km/h')[0])
+        crowdInfoDict['startTime'] = eventInfo.split(
+            '开始时间')[-1].split('.')[0]
+        crowdInfoDict['endTime'] = eventInfo.split(
+            '结束时间')[-1].split('.')[0]
     else:
         raise ValueError('拥堵事件信息错误.')
     # 删除值为None的键值对
@@ -163,66 +198,93 @@ def crowdInfo2Dict(eventInfo):
             del crowdInfoDict[key]
     return crowdInfoDict
 
+
 def collisionInfo2Dict(eventInfo):
     '''碰撞发生即结束
-        2024-03-31 23:44:47,749 - K81+866_1 - WARNING - __init__.py - 事件ID=20240331-F00005 - id=1602112,1602263车辆碰撞, (x,y)=[1.0, 16.0]m, lane=8, (vx,vy,speed)=[2.0, 1.0, 0.0]km/h (x,y)=[1.0, 16.0]m, lane=8, (vx,vy,speed)=[1.0, 4.0, 0.0]km/h
+        2024-03-31 23:44:47,749 - K81+866_1 - WARNING - __init__.py -
+        事件ID=20240331-F00005 - id=1602112,1602263车辆碰撞, (x,y)=[1.0, 16.0]m,
+        lane=8, (vx,vy,speed)=[2.0, 1.0, 0.0]km/h (x,y)=[1.0, 16.0]m, lane=8,
+        (vx,vy,speed)=[1.0, 4.0, 0.0]km/h
     start xy对应第一个车辆, end xy对应第二个车辆, 其他信息类似
     '''
     collisionInfoDict = deepcopy(infoDictBase)
     startXY = eventInfo.split('(x,y)=')[1].split('m')[0][1:-1].split(',')
     collisionInfoDict['start_x'] = float(startXY[0])
     collisionInfoDict['start_y'] = float(startXY[1])
-    collisionInfoDict['start_lane'] = int(eventInfo.split('lane=')[-1].split(',')[0])
-    startV = eventInfo.split('(vx,vy,speed)=')[1].split('km/h')[0][1:-1].split(',')
+    collisionInfoDict['start_lane'] = int(
+        eventInfo.split('lane=')[-1].split(',')[0])
+    startV = eventInfo.split('(vx,vy,speed)=')[1].split(
+        'km/h')[0][1:-1].split(',')
     collisionInfoDict['start_vx'] = float(startV[0])
     collisionInfoDict['start_vy'] = float(startV[1])
     collisionInfoDict['start_speed'] = float(startV[2])
     endXY = eventInfo.split('(x,y)=')[-1].split('m')[0][1:-1].split(',')
     collisionInfoDict['end_x'] = float(endXY[0])
     collisionInfoDict['end_y'] = float(endXY[1])
-    collisionInfoDict['end_lane'] = int(eventInfo.split('lane=')[-1].split(',')[0])
-    endV = eventInfo.split('(vx,vy,speed)=')[-1].split('km/h')[0][1:-1].split(',')
+    collisionInfoDict['end_lane'] = int(
+        eventInfo.split('lane=')[-1].split(',')[0])
+    endV = eventInfo.split('(vx,vy,speed)=')[-1].split(
+        'km/h')[0][1:-1].split(',')
     collisionInfoDict['end_vx'] = float(endV[0])
     collisionInfoDict['end_vy'] = float(endV[1])
     collisionInfoDict['end_speed'] = float(endV[2])
-    # collisionInfoDict['startTime'] = eventInfo.split('时间: ')[-1].split('.')[0]
+    # collisionInfoDict['startTime'] = eventInfo.split(
+    #     '时间: ')[-1].split('.')[0]
     # collisionInfoDict['endTime'] = collisionInfoDict['startTime']
     # 删除值为None的键值对
     for key in list(collisionInfoDict.keys()):
         if collisionInfoDict[key] is None:
             del collisionInfoDict[key]
     return collisionInfoDict
-       
+
 
 def singleCarEventInfo2Dict(eventInfo):
     '''将单车事件信息转化为字典
-    2024-03-31 23:42:09,958 - K81+866_1 - WARNING - __init__.py - 事件ID=20240331-B00002 - id=1605316车辆发生stop, (x,y)=[1.0, 15.0]m, lane=8, (vx,vy,speed)=[0.0, 1.0, 0.0]km/h , 开始时间2024-03-27 17:10:00.
-    2024-03-31 23:42:10,924 - K81+866_1 - WARNING - __init__.py - 事件ID=20240331-H00001 - id=1605251车辆发生illegalOccupation, (x,y)=[1.0, 17.0]m, lane=8, (vx,vy,speed)=[3.0, 0.0, 0.0]km/h , 开始时间2024-03-27 17:10:00.
-    2024-03-31 23:42:11,497 - K81+866_1 - WARNING - __init__.py - 事件ID=20240331-H00001 - id=1605251车辆illegalOccupation事件结束, (x,y)=[1.0, 17.0]m, lane=8, (vx,vy,speed)=[3.0, 0.0, 0.0]km/h , 开始时间2024-03-27 17:10:00, 结束时间2024-03-27 17:10:00.
-    2024-03-31 23:42:39,650 - K81+866_1 - WARNING - __init__.py - 事件ID=20240331-B00002 - id=1605316车辆stop事件结束, (x,y)=[1.0, 15.0]m, lane=8, (vx,vy,speed)=[1.0, 0.0, 0.0]km/h , 开始时间2024-03-27 17:10:00, 结束时间2024-03-27 17:10:12.
+    2024-03-31 23:42:09,958 - K81+866_1 - WARNING - __init__.py -
+    事件ID=20240331-B00002 - id=1605316车辆发生stop, (x,y)=[1.0, 15.0]m,
+    lane=8, (vx,vy,speed)=[0.0, 1.0, 0.0]km/h , 开始时间2024-03-27 17:10:00.
+    2024-03-31 23:42:10,924 - K81+866_1 - WARNING - __init__.py -
+    事件ID=20240331-H00001 - id=1605251车辆发生illegalOccupation,
+    (x,y)=[1.0, 17.0]m, lane=8, (vx,vy,speed)=[3.0, 0.0, 0.0]km/h ,
+    开始时间2024-03-27 17:10:00.
+    2024-03-31 23:42:11,497 - K81+866_1 - WARNING - __init__.py -
+    事件ID=20240331-H00001 - id=1605251车辆illegalOccupation事件结束,
+    (x,y)=[1.0, 17.0]m, lane=8, (vx,vy,speed)=[3.0, 0.0, 0.0]km/h ,
+    开始时间2024-03-27 17:10:00, 结束时间2024-03-27 17:10:00.
+    2024-03-31 23:42:39,650 - K81+866_1 - WARNING - __init__.py -
+    事件ID=20240331-B00002 - id=1605316车辆stop事件结束, (x,y)=[1.0, 15.0]m,
+    lane=8, (vx,vy,speed)=[1.0, 0.0, 0.0]km/h , 开始时间2024-03-27 17:10:00,
+    结束时间2024-03-27 17:10:12.
     '''
     singleCarEventInfoDict = deepcopy(infoDictBase)
     if '发生' in eventInfo:
         startXY = eventInfo.split('(x,y)=')[-1].split('m')[0][1:-1].split(',')
         singleCarEventInfoDict['start_x'] = float(startXY[0])
         singleCarEventInfoDict['start_y'] = float(startXY[1])
-        singleCarEventInfoDict['start_lane'] = int(eventInfo.split('lane=')[-1].split(',')[0])
-        startV = eventInfo.split('(vx,vy,speed)=')[-1].split('km/h')[0][1:-1].split(',')
+        singleCarEventInfoDict['start_lane'] = int(
+            eventInfo.split('lane=')[-1].split(',')[0])
+        startV = eventInfo.split('(vx,vy,speed)=')[-1].split(
+            'km/h')[0][1:-1].split(',')
         singleCarEventInfoDict['start_vx'] = float(startV[0])
         singleCarEventInfoDict['start_vy'] = float(startV[1])
         singleCarEventInfoDict['start_speed'] = float(startV[2])
-        singleCarEventInfoDict['startTime'] = eventInfo.split('开始时间')[-1].split('.')[0]
+        singleCarEventInfoDict['startTime'] = eventInfo.split(
+            '开始时间')[-1].split('.')[0]
     elif '结束' in eventInfo:
         endXY = eventInfo.split('(x,y)=')[-1].split('m')[0][1:-1].split(',')
         singleCarEventInfoDict['end_x'] = float(endXY[0])
         singleCarEventInfoDict['end_y'] = float(endXY[1])
-        singleCarEventInfoDict['end_lane'] = int(eventInfo.split('lane=')[-1].split(',')[0])
-        endV = eventInfo.split('(vx,vy,speed)=')[-1].split('km/h')[0][1:-1].split(',')
+        singleCarEventInfoDict['end_lane'] = int(
+            eventInfo.split('lane=')[-1].split(',')[0])
+        endV = eventInfo.split('(vx,vy,speed)=')[-1].split(
+            'km/h')[0][1:-1].split(',')
         singleCarEventInfoDict['end_vx'] = float(endV[0])
         singleCarEventInfoDict['end_vy'] = float(endV[1])
         singleCarEventInfoDict['end_speed'] = float(endV[2])
-        singleCarEventInfoDict['startTime'] = eventInfo.split('开始时间')[-1].split(',')[0]
-        singleCarEventInfoDict['endTime'] = eventInfo.split('结束时间')[-1].split('.')[0]
+        singleCarEventInfoDict['startTime'] = eventInfo.split(
+            '开始时间')[-1].split(',')[0]
+        singleCarEventInfoDict['endTime'] = eventInfo.split(
+            '结束时间')[-1].split('.')[0]
     else:
         raise ValueError('单车事件信息错误.')
     # 删除值为None的键值对
@@ -234,11 +296,11 @@ def singleCarEventInfo2Dict(eventInfo):
 
 def loggerPrint2Xlsx(dataPath: str):
     '''function loggerPrint2Xlsx
-    
+
     input
     -----
     dataPath: str, 日志文件路径
-    
+
     return
     ------
     pd.DataFrame, 保存日志信息到xlsx文件
@@ -253,7 +315,7 @@ def loggerPrint2Xlsx(dataPath: str):
     df.to_excel(xlsxPath, index=False)
 
 
-def _convertDeviceLogFiles2Xlsx(dirPath:str):
+def _convertDeviceLogFiles2Xlsx(dirPath: str):
     '''function convertDeviceLogFiles2Xlsx
 
     input
@@ -362,7 +424,7 @@ def convertLoggerDirFiles2Xlsx(dirPath: str):
 
 def loggerInfoStatistic(xlsxPath: str):
     '''function loggerInfoStatistic
-    
+
     input
     -----
     xlsxPath: str, 日志信息文件路径
@@ -394,9 +456,9 @@ def loggerInfoStatistic(xlsxPath: str):
     df_statistic = pd.DataFrame(infoDict)
     # 对index进行排序
     df_statistic.sort_index(inplace=True)
-    # 写入xlsx文件
-    with pd.ExcelWriter(xlsxPath, engine='openpyxl', mode='a') as writer:  # Use mode='a' to append data
-        df_statistic.to_excel(writer, sheet_name='统计信息')  # Write the statistic data to a new sheet '统计信息'
+    # 写入xlsx文件  Use mode='a' to append data
+    with pd.ExcelWriter(xlsxPath, engine='openpyxl', mode='a') as writer:
+        df_statistic.to_excel(writer, sheet_name='统计信息')
 
 
 def reverseDict2LayerKeys(d: dict):
@@ -407,6 +469,7 @@ def reverseDict2LayerKeys(d: dict):
             newDict.setdefault(key2, {})
             newDict[key2][key1] = d[key1][key2]
     return newDict
+
 
 if __name__ == "__main__":
     # logger转化为xlsx

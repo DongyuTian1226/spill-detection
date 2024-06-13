@@ -32,11 +32,12 @@ def simulatedMain():
     clbPath = './road_calibration/clbymls/clb.yml'
     dataPath = './data/result.txt'
     # clbPath = './road_calibration/clbymls/clb_K81+866_1.yml'
-    # dataPath = r'D:\myscripts\spill-detection\data\sample\stop20240326-K81+866.csv'
+    # dataPath = r'spill-detection\data\sample\stop20240326-K81+866.csv'
     args = params()
     logger = MyLogger(args.deviceId, args.deviceType)
     controller = Controller(configPath, clbPath, logger, args)
-    smltor = Smltor(dataPath) if dataPath.endswith('.txt') else DfSimulator(dataPath)
+    smltor = Smltor(dataPath) if dataPath.endswith(
+        '.txt') else DfSimulator(dataPath)
 
     # 模拟接受数据
     while True:
@@ -69,7 +70,8 @@ def main():
         # auto_commit_interval_ms=cfg['kafkaAutoCommitIntervalMs']
         )
     # 生成http上报器
-    hp = HttpPoster(cfg['http'], deviceID=args.deviceId, deviceType=args.deviceType)
+    hp = HttpPoster(cfg['http'], deviceID=args.deviceId,
+                    deviceType=args.deviceType)
     logger.info('kafka与http数据通信组件已生成.')
 
     # 获取当前设备信息
@@ -230,9 +232,11 @@ def simulatedMainGroupedMultiThread(dataPath: str):
         controllerGroup[name].logger.updateDayLogFile()
         # 算法检测
         # msg, events = controllerGroup[name].run(msg)
+
         def runController(controller):
             controller.run(msg)
-        t = threading.Thread(target=runController, args=(controllerGroup[name],))
+        t = threading.Thread(target=runController, args=(
+            controllerGroup[name],))
         t.start()
         # if (count % 6000 == 0) & (deviceID == 'K81+320'):
         #     print('time report:', name)
@@ -255,7 +259,7 @@ def evaluateDeployedModel():
     # dataDir = r'D:\myscripts\spill-detection\data\extractedData'
     # dataDir = r'D:\东南大学\科研\金科\data\dataRy\data'
     dataDir = r'E:\data'
-    # dataDir = r'D:\myscripts\spill-detection\data\extractedData\4月22，23日平台告警时间段数据'
+    # dataDir = r'data\extractedData\4月22，23日平台告警时间段数据'
     # targetEvaluateFiles = [
     #     # 'K81+320_1_2024-04-23-06-51-34_2024-04-23-06-53-34.txt',
     #     # 'K81+320_1_2024-04-22-17-02-06_2024-04-22-17-04-06.txt'
@@ -264,12 +268,10 @@ def evaluateDeployedModel():
     #     '2024-4-22-19.txt'
     # ]
     for file in os.listdir(dataDir):
-        if (
-            ('dump' in file) or
-            ('result' in file) or
-            ('heartbeat' in file) or
-            (not file.endswith('.txt'))
-            ):
+        condition1 = ('dump' in file) or ('result' in file) or (
+            'heartbeat' in file)
+        condition2 = (not file.endswith('.txt'))
+        if condition1 or condition2:
             continue
         # if file not in targetEvaluateFiles:
         #     continue

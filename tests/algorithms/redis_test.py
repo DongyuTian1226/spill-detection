@@ -6,16 +6,19 @@ from multiprocessing import Process
 # 连接 Redis
 redis_client = redis.StrictRedis(host='localhost', port=6379, db=0)
 
+
 def acquire_lock(lock_name, acquire_timeout=10):
     """ 尝试获取锁 """
     lock = redis_client.lock(lock_name, timeout=acquire_timeout)
     acquired = lock.acquire(blocking=True)
     return lock if acquired else None
 
+
 def release_lock(lock):
     """ 释放锁 """
     if lock:
         lock.release()
+
 
 def task(lock_name):
     """ 模拟任务执行 """
@@ -27,6 +30,7 @@ def task(lock_name):
         finally:
             release_lock(lock)
             print(f"Process {os.getpid()} released lock.")
+
 
 if __name__ == '__main__':
     lock_name = "my_lock"

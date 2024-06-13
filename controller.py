@@ -280,11 +280,17 @@ class Controller:
         percentSave = timeSave / timeTotal
         # print输出, ms单位
         print('count: ', count)
-        print('驱动器平均耗时: {:.2f}ms, 占比: {:.2%}'.format(avgDriver * 1000, percentDriver))
-        print('交通参数计算平均耗时: {:.2f}ms, 占比: {:.2%}'.format(avgTraffic * 1000, percentTraffic))
-        print('预处理平均耗时: {:.2f}ms, 占比: {:.2%}'.format(avgPre * 1000, percentPre))
-        print('事件检测平均耗时: {:.2f}ms, 占比: {:.2%}'.format(avgDetect * 1000, percentDetect))
-        print('发送平均耗时: {:.2f}ms, 占比: {:.2%}'.format(avgSend * 1000, percentSend))
-        print('保存平均耗时: {:.2f}ms, 占比: {:.2%}'.format(avgSave * 1000, percentSave))
+        print('驱动器平均耗时: {:.2f}ms, 占比: {:.2%}'.format(
+            avgDriver * 1000, percentDriver))
+        print('交通参数计算平均耗时: {:.2f}ms, 占比: {:.2%}'.format(
+            avgTraffic * 1000, percentTraffic))
+        print('预处理平均耗时: {:.2f}ms, 占比: {:.2%}'.format(
+            avgPre * 1000, percentPre))
+        print('事件检测平均耗时: {:.2f}ms, 占比: {:.2%}'.format(
+            avgDetect * 1000, percentDetect))
+        print('发送平均耗时: {:.2f}ms, 占比: {:.2%}'.format(
+            avgSend * 1000, percentSend))
+        print('保存平均耗时: {:.2f}ms, 占比: {:.2%}'.format(
+            avgSave * 1000, percentSave))
         print('平均总耗时: {:.2f}ms'.format(avgTotal * 1000))
         print('总耗时: {:.2f}ms'.format(timeTotal * 1000))

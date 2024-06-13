@@ -32,8 +32,8 @@ class Smltor(BigFileReader):
         msg = self.f.readline()
         # self.runIndex += 1
         # msg = self.getRow(self.runIndex)
-        if (len(msg) > 1) and (msg[1] == '\''):      # 防止json.loads()报错, load要求字符串中为双引号
-            msg = swapQuotes(msg)
+        if (len(msg) > 1) and (msg[1] == '\''):
+            msg = swapQuotes(msg)   # 防止json.loads()报错, loads要求字符串中为双引号
         # 接受数据
         try:
             msg = json.loads(msg)  # 接收到list数据
@@ -79,6 +79,7 @@ class DfSimulator:
         for k in row.keys():
             msg[k] = row[k]
         return [msg]    # 返回列表, 模拟每帧有多条数据, 统一格式
+
 
 class DumpSimulator:
     '''class DumpSimulator

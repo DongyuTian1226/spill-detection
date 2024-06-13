@@ -489,7 +489,8 @@ class DriverOnline:
                 'level': 1,
                 'start_time': unixMilliseconds2Datetime(event['startTime']),
                 'end_time': unixMilliseconds2Datetime(event['endTime'])
-                if event['endTime'] != -1 else unixMilliseconds2Datetime(event['startTime']),
+                if event['endTime'] != -1 else unixMilliseconds2Datetime(
+                    event['startTime']),
                 'lane': event['laneID'],
                 'raw_class': event['rawClass'],
                 'point_wgs84': {'lat': event['lat'], 'lon': event['lon']},

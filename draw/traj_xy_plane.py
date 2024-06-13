@@ -202,25 +202,27 @@ if __name__ == '__main__':
     proDir = r"D:\myscripts\spill-detection"
     cfgPath = os.path.join(proDir, "config.yml")
     # # 画单个文件
-    # csvPath = r"D:\myscripts\spill-detection\data\extractedData\2024-3-27-17_byDevice\K78+760_1.csv"
-    # clbPath = os.path.join(proDir, "road_calibration/clbymls/clb_K78+760_1.yml")
+    # csvPath = r"data\extractedData\2024-3-27-17_byDevice\K78+760_1.csv"
+    # clbPath = os.path.join(proDir,
+    #                        "road_calibration/clbymls/clb_K78+760_1.yml")
     # 直接画整个文件夹下的所有csv文件
-    
-    # csvFileDir = r"D:\myscripts\spill-detection\data\extractedData\2024-3-26-8_byDevice"
+
+    # csvFileDir = r"data\extractedData\2024-3-26-8_byDevice"
     # 22日13，14，15，16，17时
     # 23日8，9时
-    csvFileDir = r"D:\myscripts\spill-detection\data\extractedData\2024-4-22-13_byDevice"
-    csvFileDir = r"D:\myscripts\spill-detection\data\extractedData\2024-4-22-14_byDevice"
-    csvFileDir = r"D:\myscripts\spill-detection\data\extractedData\2024-4-22-15_byDevice"
-    csvFileDir = r"D:\myscripts\spill-detection\data\extractedData\2024-4-22-16_byDevice"
-    csvFileDir = r"D:\myscripts\spill-detection\data\extractedData\2024-4-22-17_byDevice"
-    csvFileDir = r"D:\myscripts\spill-detection\data\extractedData\2024-4-23-8_byDevice"
-    csvFileDir = r"D:\myscripts\spill-detection\data\extractedData\2024-4-23-9_byDevice"
+    csvFileDir = r"data\extractedData\2024-4-22-13_byDevice"
+    csvFileDir = r"data\extractedData\2024-4-22-14_byDevice"
+    csvFileDir = r"data\extractedData\2024-4-22-15_byDevice"
+    csvFileDir = r"data\extractedData\2024-4-22-16_byDevice"
+    csvFileDir = r"data\extractedData\2024-4-22-17_byDevice"
+    csvFileDir = r"data\extractedData\2024-4-23-8_byDevice"
+    csvFileDir = r"data\extractedData\2024-4-23-9_byDevice"
 
     csvFiles = [x for x in os.listdir(csvFileDir) if x.endswith(".csv")]
     csvFileDict = {x.split(".")[0].split("_")[0]: x for x in csvFiles}
     clbFileDir = os.path.join(proDir, "road_calibration/clbymls")
-    clbFiles = [x for x in os.listdir(clbFileDir) if (x.endswith(".yml")) and ('K' in x)]
+    clbFiles = [x for x in os.listdir(clbFileDir) if (x.endswith(".yml"))
+                and ('K' in x)]
     clbFileDict = {x.split(".")[0].split("_")[1]: x for x in clbFiles}
     for key in csvFileDict:
         if key not in clbFileDict:

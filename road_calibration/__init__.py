@@ -329,7 +329,7 @@ class Calibrator():
             # 法2: 计算各元胞经过车辆数占该车道总车辆数的比例
             # 比例小于 1 / cellNum / 5 判定为不可用
             valid = [True if x / sum(cellCount[id]) > 1 / cellNum / 5
-                      else False for x in cellCount[id]]
+                     else False for x in cellCount[id]]
             # 对于y运动方向为负的车道, 元胞列表反向(默认从ymin到ymax划分为正向)
             if self.vDirDict[id]['y'] < 0:
                 valid.reverse()
@@ -341,7 +341,6 @@ class Calibrator():
         # 若该元胞为lane上的第一个或最后一个元胞, 则其确认不可用
         # 若该元胞为lane上的中间元胞, 则检查其前后元胞是否不可用
         # 需保证不可用元胞能够与边缘的不可用元胞相邻，以确保不可用元胞的连续性
-
 
     def save(self):
         '''class function save

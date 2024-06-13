@@ -47,8 +47,8 @@ def loadFieldData2df(dataPath: str, deviceID: str = None,
 
 
 if __name__ == '__main__':
-    # dir = r'D:\myscripts\spill-detection\data\extractedData\2024-3-26-8_byDevice'
-    # dir = r'D:\myscripts\spill-detection\data\extractedData\2024-4-22-10_byDevice'
+    # dir = r'data\extractedData\2024-3-26-8_byDevice'
+    # dir = r'data\extractedData\2024-4-22-10_byDevice'
 
     dir = r'D:\myscripts\spill-detection\data\extractedData'
     fileList = os.listdir(dir)
@@ -59,11 +59,11 @@ if __name__ == '__main__':
         loadFieldData2df(path)
         print(path, '数据完成转化为excel.')
 
-    # path = r'D:\myscripts\spill-detection\data\extractedData\2024-3-26-9_byDevice\K68+366_1.txt'
+    # path = r'data\extractedData\2024-3-26-9_byDevice\K68+366_1.txt'
     # loadFieldData2df(path, 'K68+366', 1)
 
     # filelist = [
-    #     r'D:\myscripts\spill-detection\data\extractedData\K81+320_1_2024-04-23-08-10-00_2024-04-23-08-20-00.txt'
+    #     r'data\extractedData\K81+320_1_start_end.txt'
     # ]
     # for path in filelist:
     #     loadFieldData2df(path, 'K81+320', 1)

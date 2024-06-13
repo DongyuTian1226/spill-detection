@@ -8,7 +8,6 @@ import pandas as pd
 extractedDir = 'D:/myscripts/spill-detection/data/extractedData'
 
 
-
 def extractFieldDataByTimeRange(dataPath: str, startTime: str, endTime: str):
     '''function extractFieldDataByTimeRange
 
@@ -27,8 +26,8 @@ def extractFieldDataByTimeRange(dataPath: str, startTime: str, endTime: str):
     startTime = startTime.replace(':', '-')
     endTime = endTime.replace(':', '-')
     # 根据起止时间命名提取文件
-    extractedPath = ('./data/extractedData/' + startTime + \
-        '_' + endTime + '.txt').replace(' ', '-')
+    extractedPath = ('./data/extractedData/' + startTime +
+                     '_' + endTime + '.txt').replace(' ', '-')
     if os.path.exists(extractedPath):
         print(f'文件{extractedPath}已存在.')
         return      # 已存在则不再提取
@@ -146,7 +145,9 @@ def extractFieldDataByDeviceTimeRange(
                 continue
             if (endTime is not None) and (dataTime > endTime):
                 break
-            if data['deviceID'] == deviceID and data['deviceType'] == deviceType:
+            condition1 = data['deviceID'] == deviceID
+            condition2 = data['deviceType'] == deviceType
+            if condition1 and condition2:
                 with open(extractedPath, 'a') as f2:
                     f2.write(json.dumps(data) + '\n')
     print('数据提取完成, 保存在', extractedPath)
@@ -165,7 +166,7 @@ def extractEventDataByPlatformWarn(platformWarnFile: str, fieldDataDir: str):
     None, 将保存提取的数据到本地
 
     从平台报警文件中提取事件数据, 根据device和startTime提取。
-    
+
     函数过程
     -------
     遍历fileDataDir下所有的数据文件
@@ -190,7 +191,7 @@ def extractEventDataByPlatformWarn(platformWarnFile: str, fieldDataDir: str):
             time = datetime.strftime(time, '%Y-%m-%d %H:%M:%S')
         hour = time.split(':')[0].replace(' ', '-')
         hour = '-'. join([x[1:] if x[0] == '0' else x
-                            for x in hour.split('-')])
+                          for x in hour.split('-')])
         for file in fileList:
             if (not file.endswith('.txt')) or ('report' in file):
                 continue

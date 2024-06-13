@@ -3,12 +3,13 @@ from data.extract_data import (
     extractFieldDataByTimeRange,
     extracctFieldDataByDeviceID,
     extractFieldDataByDeviceTimeRange,
-    extractEventDataByPlatformWarn,
+    # extractEventDataByPlatformWarn,
 )
 from data.observe_data import (
     observeFieldData,
     getAverageTimeStepForSingleDevice
 )
+
 
 def extractSpecifiedTimeRangeToDetectEvent():
     dataPath2TimeRangeDict = {
@@ -46,7 +47,7 @@ def observe20240327EveningPeakData():
 
 
 def observeTimeStep20240327EveningPeak():
-    dataDir = r'D:\myscripts\spill-detection\data\extractedData\2024-3-27-17_byDevice'
+    dataDir = r'data\extractedData\2024-3-27-17_byDevice'
     for file in os.listdir(dataDir):
         if not file.endswith('.txt'):
             continue
@@ -55,7 +56,8 @@ def observeTimeStep20240327EveningPeak():
 
 def get260820data():
     dataPath = r'D:\东南大学\科研\金科\data\dataRy\data/2024-3-26-8.txt'
-    extractFieldDataByTimeRange(dataPath, '2024-03-26 08:15:00', '2024-03-26 08:25:00')
+    extractFieldDataByTimeRange(dataPath, '2024-03-26 08:15:00',
+                                '2024-03-26 08:25:00')
     print('数据提取完成.')
 
 
@@ -68,13 +70,16 @@ def get2609DeviceData():
     dataPath = r'D:\东南大学\科研\金科\data\dataRy\data/2024-3-26-9.txt'
     extracctFieldDataByDeviceID(dataPath)
 
+
 def get2717DeviceData():
     dataPath = r'D:\东南大学\科研\金科\data\dataRy\data/2024-3-27-17.txt'
     extracctFieldDataByDeviceID(dataPath)
 
+
 def get2718DeviceData():
     dataPath = r'D:\东南大学\科研\金科\data\dataRy\data/2024-3-27-18.txt'
     extracctFieldDataByDeviceID(dataPath)
+
 
 def get2609K68366Data():
     dataPath = r'D:\东南大学\科研\金科\data\dataRy\data/2024-3-26-9.txt'
@@ -84,7 +89,8 @@ def get2609K68366Data():
 
 def get2717SecondHalfData():
     dataPath = r'D:\东南大学\科研\金科\data\dataRy\data/2024-3-27-17.txt'
-    extractFieldDataByTimeRange(dataPath, '2024-03-27 17:30:00', '2024-03-27 17:40:00')
+    extractFieldDataByTimeRange(dataPath, '2024-03-27 17:30:00',
+                                '2024-03-27 17:40:00')
     print('数据提取完成.')
 
 
@@ -100,7 +106,7 @@ def get042210data():
 
 
 # def extractEventDataByPlatformWarn042223():
-#     warnPath = r'D:\myscripts\spill-detection\analysis\4月22，23日全天数据\事件明细[2024-04-22-2024-04-23]4月下旬测试.xlsx'
+#     warnPath = r'事件明细[2024-04-22-2024-04-23]4月下旬测试.xlsx'
 #     dataDir = r'E:\data'
 #     extractEventDataByPlatformWarn(warnPath, dataDir)
 
@@ -165,7 +171,8 @@ def get202404230810to20dataK81320():
     deviceID = 'K81+320'
     startTime = '2024-04-23 08:10:00'
     endTime = '2024-04-23 08:20:00'
-    extractFieldDataByDeviceTimeRange(dir + '/' + filename, deviceID, 1, startTime, endTime)
+    extractFieldDataByDeviceTimeRange(dir + '/' + filename,
+                                      deviceID, 1, startTime, endTime)
 
 
 if __name__ == "__main__":
@@ -188,3 +195,4 @@ if __name__ == "__main__":
     # get0424K68366dataFrom14To18()
     # get042223dataK79886forillegalOccupation()
     # get202404230810to20dataK81320()
+    pass

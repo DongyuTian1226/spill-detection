@@ -1,15 +1,16 @@
 import math
 
+
 class VandAccCalculator:
     '''class VandACalculator
-    
+
     计算速度、全局速度和加速度属性,
     speed, globalSpeed,
     ax, ay, a.
     '''
     def __init__(self, accCalculateFrames: int):
         '''function __init__
-        
+
         加速度计算帧数, 在一定范围内采样计算加速度。'''
         self.accCalculateFrames = accCalculateFrames
         pass
@@ -36,8 +37,8 @@ class VandAccCalculator:
             else:
                 car['globalSpeed'] = 1000 * math.sqrt(
                     (records[id][-1]['x'] - records[id][0]['x'])**2 +
-                    (records[id][-1]['y'] - records[id][0]['y'])**2
-                    ) / (records[id][-1]['timestamp'] -
+                    (records[id][-1]['y'] - records[id][0]['y'])**2) / (
+                        records[id][-1]['timestamp'] -
                         records[id][0]['timestamp'])
             # 计算加速度m/s^2
             if len(records[id]) < self.accCalculateFrames:
