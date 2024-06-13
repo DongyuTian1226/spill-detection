@@ -142,7 +142,7 @@ class Controller:
         # 生成事件检测器(内含交通参数管理器)
         self.edt = EventDetector(self.clb, self.cfg, self.logger)
 
-    def run(self, msg: list) -> (list, list):
+    def run(self, msg: list):
         '''function run
 
         input
@@ -152,7 +152,7 @@ class Controller:
         return
         ------
         msg: list, 某一帧的车辆目标数据, list格式。
-        events: list, 事件检测结果。
+        events: list, 事件检测结果, 元素为drvier处理后可以直接通过post发送的事件格式。
 
         接受传感器数据, 返回发送数据、事件检测结果。
         '''
@@ -169,8 +169,6 @@ class Controller:
         # 更新缓存
         self._updateCache(cars)
         time3 = time.time()
-        # if 1107720 in [car['id'] for car in cars]:
-        #     print('controller before pp: ', cars)
         # 预处理
         if len(cars) == 0:      # fix bug: 无车辆时不进行预处理
             return None, None
@@ -178,13 +176,9 @@ class Controller:
         if len(cars) == 0:      # fix bug: 无车辆时不进行预处理
             return None, None
         time4 = time.time()
-        # if 1107720 in [car['id'] for car in cars]:
-        #     print('controller after pp: ', cars)
         # 事件检测(内含交通流参数计算+事件检测)
         events = self.edt.run(cars)
         time5 = time.time()
-        # if 1107720 in [car['id'] for car in cars]:
-        #     print('controller after ed: ', cars)
         # 发送数据
         msg, events = self.drv.send(cars.copy(), events)
         time6 = time.time()
