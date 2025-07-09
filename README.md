@@ -1,60 +1,66 @@
-# spill-detection
-构建高速公路异常事件检测交通处理模型：采用运行轨迹特征判断、交通行为判断方法，对视频可观察到的路面抛洒物事件以及引起的事故事件进行检测；对视频不可观察的异常条件下拥堵异常行为进行异常检测。<br>
-**核心功能为抛洒物检测。**
+# Spill-Detection
+A traffic processing model for detecting abnormal events on highways, using trajectory features and traffic behavior analysis to detect observable spill events and related accidents from video data, as well as non-observable congestion anomalies.
 
-## 1. 数据说明
-### 1.1 数据说明
-**数据来源**: 金科院，南京绕越高速管理中心<br>
-**数据场景**: 南京绕越高速<br>
-**采集设备**: 雷达<br>
-**帧率**: 20FPS
-### 1.2 样本数据
-**路段长度**: 约400m<br>
-**开始时间戳**: 2023-10-20 10:03:41.883<br>
-**开始帧数**: 62748
+**Core Functionality: Spill Detection**
 
-### 1.3 样本数据格式
-离线模拟场景: 从txt文件读取接受<br>
-每帧传来数据为list, list元素为代表目标信息的dict, 即: <br>
-第n帧:  [car1, car2, ...]<br>
-各car目标的dict形式为: <br>
-TargetId | XDecx | YDecy | ZDecz | VDecVx | VDecVy | Xsize | Ysize | TargetType | Longitude | Latitude | Confidence | EventType | LineNum | Frame<br>
-### 1.4 部署数据格式
-外层：{deviceID, deviceType, targets}<br>
-其中target的字段为<br>
-timestamp | id | lane | y | x | cls | speed | vx | vy | latitude | longitude
-### 1.5 数据协议
-参见文档<a href="./docs/data_protocol.txt" >数据协议</a>
+## 📊 1. Data Overview
+### 1.1 Data Source
+- **Source**: JinKe Academy, Nanjing Ring Expressway Management Center
+- **Scenario**: Nanjing Ring Expressway
+- **Device**: Radar
+- **Frame Rate**: 20 FPS
 
-## 2. 检测事件类别
-共检测8类事件。<br>
-["spill", "stop", "lowSpeed", "highSpeed", "emergencyBrake", "incident", "crowd", "illegalOccupation"]<br>
-抛洒物，停车，低速行驶，超速行驶，急刹车，车辆事故，拥堵，非法占用应急车道
+### 1.2 Sample Data
+- **Road Segment Length**: ~400m
+- **Start Timestamp**: 2023-10-20 10:03:41.883
+- **Start Frame**: 62748
 
-## 3. 算法逻辑
+### 1.3 Sample Data Format
+- **Offline Simulation**: Reads from a `.txt` file
+- **Per Frame Data**: List of dictionaries representing target information
+  - Frame n: `[car1, car2, ...]`
+  - Each car dictionary:  
+    `TargetId | XDecx | YDecy | ZDecz | VDecVx | VDecVy | Xsize | Ysize | TargetType | Longitude | Latitude | Confidence | EventType | LineNum | Frame`
+
+### 1.4 Deployment Data Format
+- **Outer Structure**: `{deviceID, deviceType, targets}`
+- **Target Fields**:  
+  `timestamp | id | lane | y | x | cls | speed | vx | vy | latitude | longitude`
+
+### 1.5 Data Protocol
+See [data protocol](./docs/data_protocol.txt)
+
+## 🚨 2. Detected Event Categories
+- 8 event types detected:  
+  `["spill", "stop", "lowSpeed", "highSpeed", "emergencyBrake", "incident", "crowd", "illegalOccupation"]`  
+  (Spill, Stop, Low Speed, High Speed, Emergency Brake, Incident, Congestion, Illegal Occupation of Emergency Lane)
+
+## 🧠 3. Algorithm Logic
+The algorithm processes radar data to detect abnormal traffic events through a series of computational steps. It begins with data ingestion, where raw radar inputs are parsed and normalized. Trajectory analysis tracks vehicle movements using position and velocity data, identifying patterns indicative of events like spills or congestion. Behavioral rules are applied to classify events based on predefined thresholds for speed, braking, and lane usage. The system outputs event classifications, which are validated against historical data to improve accuracy.
+
 <p>
-<img
-src="./docs/algorithms_logic.png"
-alt="算法逻辑"
-title="算法逻辑"
-width="100%"
->
+<img src="./docs/algorithms_logic.png" alt="Algorithm Logic" title="Algorithm Logic" width="100%">
 </p>
-## 4. 项目架构
+
+## 🏗️ 4. Project Architecture
+The project architecture is modular, designed for scalability and real-time processing. It consists of several interconnected components: a data ingestion module that collects radar inputs, a preprocessing unit that cleans and formats data, a core detection engine that applies the algorithm logic, and an output module that delivers event notifications. These components communicate through a message-passing system, ensuring efficient data flow and fault tolerance. Calibration and traffic parameter management are integrated to adapt the system to varying road conditions.
+
 <p>
-<img
-src="./docs/modules_relationship.png"
-alt="项目架构"
-title="项目架构"
-width="100%"
->
+<img src="./docs/modules_relationship.png" alt="Project Architecture" title="Project Architecture" width="100%">
 </p>
-## 5. 数据通道
+
+## 📡 5. Data Pipeline
+- **Pipeline Overview**:  
+  - **Kafka Consumer** receives messages from Kafka.
+  - **Input Driver** processes incoming data.
+  - **Calibrate OK?**: Decision point to check calibration status.
+    - If Yes: Proceeds to **Pre-processor** and **Traffic Parameter Manager**.
+    - If No: Triggers **Calibration** using `clb.yml`.
+  - **Event Detection** identifies events.
+  - **Output Driver** sends results via HTTP, producing Events.
 <p>
-<img
-src="./docs/pipeline.png"
-alt="数据通道"
-title="数据通道"
-width="100%"
->
+<img src="./docs/pipeline.png" alt="Data Pipeline" title="Data Pipeline" width="100%">
 </p>
+
+## 📜 6. License
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
